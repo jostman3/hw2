@@ -167,7 +167,7 @@ role2.save
 role3 = Role.new
 role3.movie_id = Movie.where({title: "Batman Begins"})[0].id
 role3.person_id = Person.where({name: "Liam Neeson"})[0].id
-role3.character_name = "Ra's A; Ghul"
+role3.character_name = "Ra's Al Ghul"
 role3.save
 
 role4 = Role.new
