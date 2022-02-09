@@ -153,16 +153,97 @@ movie3.person_id = Person.where({ name: "Christopher Nolan" })[0].id
 movie3.save
 
 role1 = Role.new
+role1.movie_id = Movie.where({title: "Batman Begins"})[0].id
+role1.person_id = Person.where({name: "Christian Bale"})[0].id
+role1.character_name = "Bruce Wayne"
+role1.save
+
+role2 = Role.new
+role2.movie_id = Movie.where({title: "Batman Begins"})[0].id
+role2.person_id = Person.where({name: "Michael Caine"})[0].id
+role2.character_name = "Alfred"
+role2.save
+
+role3 = Role.new
+role3.movie_id = Movie.where({title: "Batman Begins"})[0].id
+role3.person_id = Person.where({name: "Liam Neeson"})[0].id
+role3.character_name = "Ra's A; Ghul"
+role3.save
+
+role4 = Role.new
+role4.movie_id = Movie.where({title: "Batman Begins"})[0].id
+role4.person_id = Person.where({name: "Katie Holmes"})[0].id
+role4.character_name = "Rachel Dawes"
+role4.save
+
+role5 = Role.new
+role5.movie_id = Movie.where({title: "Batman Begins"})[0].id
+role5.person_id = Person.where({name: "Gary Oldman"})[0].id
+role5.character_name = "Commissioner Gordon"
+role5.save
+
+role6 = Role.new
+role6.movie_id = Movie.where({title: "The Dark Knight"})[0].id
+role6.person_id = Person.where({name: "Christian Bale"})[0].id
+role6.character_name = "Bruce Wayne"
+role6.save
+
+role7 = Role.new
+role7.movie_id = Movie.where({title: "The Dark Knight"})[0].id
+role7.person_id = Person.where({name: "Heath Ledger"})[0].id
+role7.character_name = "Joker"
+role7.save
+
+role8 = Role.new
+role8.movie_id = Movie.where({title: "The Dark Knight"})[0].id
+role8.person_id = Person.where({name: "Aaron Eckhart"})[0].id
+role8.character_name = "Harvey Dent"
+role8.save
+
+role9 = Role.new
+role9.movie_id = Movie.where({title: "The Dark Knight"})[0].id
+role9.person_id = Person.where({name: "Michael Caine"})[0].id
+role9.character_name = "Alfred"
+role9.save
+
+role10 = Role.new
+role10.movie_id = Movie.where({title: "The Dark Knight"})[0].id
+role10.person_id = Person.where({name: "Maggie Gyllenhaal"})[0].id
+role10.character_name = "Rachel Dawes"
+role10.save
+
+role11 = Role.new
+role11.movie_id = Movie.where({title: "The Dark Knight Rises"})[0].id
+role11.person_id = Person.where({name: "Christian Bale"})[0].id
+role11.character_name = "Bruce Wayne"
+role11.save
+
+role12 = Role.new
+role12.movie_id = Movie.where({title: "The Dark Knight Rises"})[0].id
+role12.person_id = Person.where({name: "Gary Oldman"})[0].id
+role12.character_name = "Commissioner Gordon"
+role12.save
+
+role13 = Role.new
+role13.movie_id = Movie.where({title: "The Dark Knight Rises"})[0].id
+role13.person_id = Person.where({name: "Tom Hardy"})[0].id
+role13.character_name = "Bane"
+role13.save
+
+role14 = Role.new
+role14.movie_id = Movie.where({title: "The Dark Knight Rises"})[0].id
+role14.person_id = Person.where({name: "Joseph Gordon-Levitt"})[0].id
+role14.character_name = "John Blake"
+role14.save
+
+role15 = Role.new
+role15.movie_id = Movie.where({title: "The Dark Knight Rises"})[0].id
+role15.person_id = Person.where({name: "Anne Hathaway"})[0].id
+role15.character_name = "Selina Kyle"
+role15.save
 
 
 
-create_table "roles", force: :cascade do |t|
-    t.integer "movie_id"
-    t.integer "person_id"
-    t.string "character_name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
 # Prints a header for the movies output
 puts "Movies"
@@ -170,7 +251,12 @@ puts "======"
 puts ""
 
 # Query the movies data and loop through the results to display the movies output
-# TODO!
+for x in Movie.all do
+    director = Person.where({id: x.person_id})[0]
+    p "#{x.title}    #{x.year_released}    #{x.rated}    #{director.name}"
+end
+
+
 
 # Prints a header for the cast output
 puts ""
@@ -180,3 +266,8 @@ puts ""
 
 # Query the cast data and loop through the results to display the cast output for each movie
 # TODO!
+for x in Role.all do
+    movie = Movie.where({id: x.movie_id})[0]
+    person = Person.where({id: x.person_id})[0]
+    p "#{movie.title}    #{person.name}    #{x.character_name}"
+end
